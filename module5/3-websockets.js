@@ -17,6 +17,11 @@ var handler = function(req, res){
 var app = http.createServer(handler);
 var io = socketio.listen(app);
 
+// use this for Cloud9
+io.configure(function(){
+    io.set('transport', ['xhr-polling']);
+});
+
 io.sockets.on('connection', function(socket){
     setInterval(function(){
         var timeStamp = Date.now();
